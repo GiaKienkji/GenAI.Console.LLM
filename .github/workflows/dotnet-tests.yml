@@ -2,10 +2,10 @@ name: CI - .NET Build & Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
@@ -16,14 +16,14 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: "8.0.x"
           cache: false
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore DemoUnitTest_ConsoleApp/DemoUnitTest_ConsoleApp.csproj
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build DemoUnitTest_ConsoleApp/DemoUnitTest_ConsoleApp.csproj --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test
+        run: dotnet test UnitTest/UnitTest.csproj --configuration Release
